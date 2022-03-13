@@ -2,14 +2,22 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+import gzip
 
 dirname = os.path.dirname(__file__)
 
 final_user_df_path = os.path.join(dirname, 'notebooks', 'final_user_df.pkl')
 final_user_df =  pickle.load(file = open(final_user_df_path, 'rb'))
 
-full_user_final_rating_path = os.path.join(dirname, 'models', 'full_user_final_rating.pkl')
-full_user_final_rating= pickle.load(file = open(full_user_final_rating_path, 'rb'))
+full_user_final_rating_path = os.path.join(dirname, 'models', 'full_user_final_rating.data')
+
+
+# read the file
+fp = gzip.open(full_user_final_rating_path,'rb') #This assumes that full_user_final_rating.data is already packed with gzip
+full_user_final_rating = pickle.load(fp)
+fp.close()
+
+#full_user_final_rating= pickle.load(file = open(full_user_final_rating_path, 'rb'))
 
 def getRecommendations(ip_username):
 
