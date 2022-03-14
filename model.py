@@ -29,7 +29,7 @@ def getRecommendations(ip_username):
         errorMessage= f' Unknown User "{ip_username}" . Kindly Check user name !!'
         return errorMessage,None
     elif (len(_df)==0):
-        errorMessage= f' No Positive Recommended Products for User "{ip_username}" . Kindly try for another User !!'
+        errorMessage= f' User "{ip_username}" has no matching items with other users and hence no products are recommented. (ColdStart Issue). Kindly try for another User !!'
         return errorMessage,None
     else:
         return list_productName,list_productPosReviewRate
